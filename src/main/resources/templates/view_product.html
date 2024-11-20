@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{base::layout(~{::section})}">
+
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Insert title here</title>
+</head>
+
+<body>
+	<section>
+		<div class="container" style="margin-top: 70px; margin-bottom: 100px;">
+			<div class="col-md-12 p-5">
+				<div class="row">
+					<div class="col-md-6 text-end">
+						<img alt="" src="/img/product_img/spring8.jpg" height="400px">
+					</div>
+
+					<div class="col-md-6">
+						<p class="fs-3">[[${product.title}]]</p>
+						<p>
+							<span class="fw-bold">Description: </span> <br> [[${product.description}]]
+						</p>
+						<p>
+							<span class="fw-bold">Chi tiết sản phẩm:</span> <br>
+							Kho:
+							<th:block th:if="${product.stock>0}">
+								<span class="badge bg-success">[[${product.stock}]]</span>
+							</th:block>
+
+							<th:block th:unless="${product.stock>0}">
+								<span class="badge bg-warning">Hết hàng</span> <br>
+							</th:block>
+							<br>
+							Danh mục: [[${product.category}]] <br>
+							Chính sách: 7 ngày hoàn trả miễn phí
+						</p>
+						<p class="fs-5 fw-bold">
+							Giá: <u style="font-size: 70%;">đ</u> [[${product.discountPrice}]]
+							<span class="fs-6 text-decoration-line-through text-secondary">[[${product.price}]]</span>
+							<span class="fs-6 text-success">-[[${product.discount}]]%</span>
+						</p>
+
+						<div class="row">
+							<div class="col-md-4 text-success text-center p-2">
+								<i class="fa-regular fa-money-bill-1"></i>
+								<p>Trả tiền khi nhận hàng</p>
+							</div>
+							<div class="col-md-4 text-danger text-center p-2">
+								<i class="fa-solid fa-rotate-left"></i>
+								<p>Hoàn trả miễn phí</p>
+							</div>
+							<div class="col-md-4 text-primary text-center p-2">
+								<i class="fa-solid fa-truck"></i>
+								<p>Miễn phí vận chuyển</p>
+							</div>
+						</div>
+						<th:block th:if="${product.stock>0}">
+							<a href="login.jsp" class="btn btn-danger col-md-12">Thêm vào giỏ hàng</a>
+						</th:block>
+						<th:block th:unless="${product.stock>0}">
+							<a href="#" class="btn btn-secondary col-md-12">Hết hàng</a>
+						</th:block>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</body>
+
+</html>

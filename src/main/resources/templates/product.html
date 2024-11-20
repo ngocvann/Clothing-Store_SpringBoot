@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{base::layout(~{::section})}">
+
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Insert title here</title>
+</head>
+
+<body>
+	<section>
+		<div class="container-fluid p-3 mt-5" style="background-color: #F9F4EB;">
+			<div class="row">
+				<div class="col-md-8 offset-md-2">
+					<form>
+						<div class="input-group">
+							<input type="text" class="form-control" name="ch">
+							<button class="btn btn-light text-dark">
+								<i class="fa-solid fa-magnifying-glass"></i>
+							</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+
+		<div class="container-fluid mt-1">
+			<div class="row">
+				<div class="col-md-2 p-0">
+					<div class="p-0 mb-5 bg-body-tertiary rounded" style="margin-left: 10px;">
+						<div class="card-body">
+							<div class="list-group">
+								<a href="/product" th:classappend="${paramValue==''} ? 'active':''"
+									class="list-group-item list-group-item-action" aria-current="true">
+									Tất cả sản phẩm
+								</a>
+
+								<a th:each="c:${categories}" th:href="@{'/product?category='+${c.name}}"
+									th:classappend="${paramValue == c.name} ? 'active':''"
+									class="list-group-item list-group-item-action">
+									[[${c.name}]]
+								</a>
+
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-10">
+					<div class="p-3 mb-5 bg-body-tertiary rounded">
+						<div class="card-body">
+							<p class="fs-3 text-center"> SẢN PHẨM</p>
+							<div class="row">
+
+								<th:block th:if="${product.size > 0}">
+
+									<div class="col-md-3 mb-3" th:each="p:${product}">
+										<div>
+											<div class="text-center">
+												<img alt="" th:src="@{'/img/product_img/'+${p.image}}" width="100%"
+													style="border-radius: 3px;">
+												<p class="fs-5 text-center mt-1" style="margin-bottom: -5px;">
+													[[${p.title}]]
+												</p>
+												<div class="row text-center">
+													<p class="fs-6 fw-bold mb-0">
+														<span class="text-decoration-line-through text-secondary"
+															style="font-size: 80%;">
+															<u style="font-size: 70%; margin-right: -3px;">đ</u>
+															[[${p.price}]]
+														</span>
+														<span style="margin-left: 5px;" class="fs-6 text-success">
+															-[[${p.discount}]]%
+														</span>
+													</p>
+													<p class="fs-6 fw-bold mb-2">
+														<span class="fs-6">
+															<u style="font-size: 70%; margin-right: -3px;">đ</u>
+															[[${p.discountPrice}]]
+														</span>
+													</p>
+													<a th:href="@{'/view_product/'+${p.id}}"
+														class="btn btn-primary col-md-6 offset-md-3">View Details</a>
+												</div>
+											</div>
+										</div>
+									</div>
+
+								</th:block>
+								
+								<th:block th:unless="${product.size > 0}">
+									<p class="fs-4 text-center mt-4 text-danger">
+										Không có sản phẩm
+									</p>
+								</th:block>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</section>
+
+</body>
+
+</html>

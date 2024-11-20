@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{base::layout(~{::section})}">
+
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Insert title here</title>
+</head>
+
+<body>
+	<section>
+		<div class="container p-5 mt-3">
+			<div class="row">
+				<div class="col-md-8 offset-md-2">
+					<div class="card card-sh">
+						<div class="card-header text-center">
+							<p class="fs-4">Chỉnh sửa sản phẩm</p>
+							<th:block th:if="${session.succMsg}">
+								<p class="text-success fw-bold">[[${session.succMsg}]]</p>
+								<th:block th:text="${@commServiceImpl.removeSessionMessage()}"></th:block>
+							</th:block>
+							<th:block th:if="${session.errorMsg}">
+								<p class="text-danger fw-bold">[[${session.errorMsg}]]</p>
+								<th:block th:text="${@commServiceImpl.removeSessionMessage()}"></th:block>
+							</th:block>
+						</div>
+						<div class="card-body">
+							<form action="/admin/updateProduct" method="post" enctype="multipart/form-data">
+								<input type="hidden" name="id" th:value="${product.id}">
+								<div class="mb-3">
+									<label>Tiêu đề</label>
+									<input type="text" name="title" th:value="${product.title}" class="form-control">
+								</div>
+
+								<div class="mb-3">
+									<label>Mô tả</label>
+									<textarea rows="3" cols="" class="form-control"
+										name="description">[[${product.description}]]</textarea>
+								</div>
+								<div class="row">
+
+									<div class="mb-3 col">
+										<label>Danh mục</label>
+										<select class="form-control" name="category">
+											<option>[[${product.category}]]</option>
+											<option th:each="c:${categories}">[[${c.name}]]</option>
+										</select>
+									</div>
+
+									<div class="mb-3 col">
+										<label>Giá</label>
+										<input type="number" name="price" class="form-control"
+											th:value="${product.price}">
+									</div>
+
+								</div>
+
+								<div class="row">
+
+									<div class="mb-3 col">
+										<label>Giảm </label>
+										<input type="number" name="discount" class="form-control"
+											th:value="${product.discount}">
+									</div>
+
+									<div class="mb-3 col">
+										<label>Giá còn</label>
+										<input type="number" class="form-control" th:value="${product.discountPrice}"
+											readonly>
+									</div>
+
+								</div>
+
+								<div class="mb-3">
+									<label>Trạng thái</label>
+									<div class="form-check">
+										<input class="form-check-input" type="radio" name="isActive"
+											id="flexRadioDefault1" value="true" th:checked="${product.isActive==true}">
+										<label class="form-check-label" for="flexRadioDefault1">
+											Hoạt động
+										</label>
+									</div>
+									<div class="form-check">
+										<input class="form-check-input" type="radio" name="isActive"
+											id="flexRadioDefault2" value="false"
+											th:checked="${product.isActive==false}">
+										<label class="form-check-label" for="flexRadioDefault2">
+											Không hoạt động
+										</label>
+									</div>
+								</div>
+
+								<div class="row">
+									<div class="mb-3 col">
+										<label>Số lượng có sẵn</label>
+										<input type="text" name="stock" class="form-control"
+											th:value="${product.stock}">
+									</div>
+
+									<div class="mb-3 col">
+										<label>Thêm hình ảnh</label>
+										<input type="file" name="file" class="form-control">
+									</div>
+									<img th:src="@{'/img/product_img/' + ${product.image}}">
+								</div>
+								<button class="btn btn-primary col-md-12">Cập nhật</button>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</body>
+
+</html>
