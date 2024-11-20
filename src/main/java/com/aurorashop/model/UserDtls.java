@@ -32,8 +32,6 @@ public class UserDtls {
 	
 	private String state;
 	
-	private String pincode;
-	
 	private String password;
 	
 	private String profileImage;
@@ -85,15 +83,6 @@ public class UserDtls {
 	public void setState(String state) {
 		this.state = state;
 	}
-
-	public String getPincode() {
-		return pincode;
-	}
-
-	public void setPincode(String pincode) {
-		this.pincode = pincode;
-	}
-
 	public String getPassword() {
 		return password;
 	}
