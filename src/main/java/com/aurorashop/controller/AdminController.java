@@ -6,6 +6,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.security.Principal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,8 +24,10 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.aurorashop.model.Category;
 import com.aurorashop.model.Product;
+import com.aurorashop.model.UserDtls;
 import com.aurorashop.service.CategoryService;
 import com.aurorashop.service.ProductService;
+import com.aurorashop.service.UserService;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -33,11 +36,26 @@ import jakarta.servlet.http.HttpSession;
 public class AdminController {
 
 	@Autowired
+	private UserService userService;
+	
+	@Autowired
 	private CategoryService categoryService;
 
 	@Autowired
 	private ProductService productService;
 
+	@ModelAttribute
+	public void getUserDetails(Principal p, Model m) {
+		if(p!=null) {
+			String email = p.getName();
+			UserDtls userDtls = userService.getUserByEmail(email);
+			m.addAttribute("user", userDtls);	
+		}
+
+		List<Category> allActiveCategory = categoryService.getAllActiveCategory();
+		m.addAttribute("categories", allActiveCategory);
+	}
+	
 	@GetMapping("/")
 	public String index() {
 		return "admin/index";

@@ -35,6 +35,8 @@ public class UserDtls {
 	private String password;
 	
 	private String profileImage;
+	
+	private String role;
 
 	public String getName() {
 		return name;
@@ -97,6 +99,14 @@ public class UserDtls {
 
 	public void setProfileImage(String profileImage) {
 		this.profileImage = profileImage;
+	}
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
 	}
 	
 }

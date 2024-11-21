@@ -6,6 +6,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.security.Principal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,13 +41,25 @@ public class HomeController {
 
 	@Autowired
 	private UserService userService;
+	
+	@ModelAttribute
+	public void getUserDetails(Principal p, Model m) {
+		if(p!=null) {
+			String email = p.getName();
+			UserDtls userDtls = userService.getUserByEmail(email);
+			m.addAttribute("user", userDtls);	
+		}		
+
+		List<Category> allActiveCategory = categoryService.getAllActiveCategory();
+		m.addAttribute("categories", allActiveCategory);
+	}
 
 	@GetMapping("/")
 	public String index() {
 		return "index";
 	}
 
-	@GetMapping("/login")
+	@GetMapping("/signin")
 	public String login() {
 		return "login";
 	}
@@ -96,7 +109,7 @@ public class HomeController {
 	public String saveUser(@ModelAttribute UserDtls user, @RequestParam("img") MultipartFile file, HttpSession session)
 			throws IOException {
 
-		String imageName = file.isEmpty() ? "default.jpg" : file.getOriginalFilename();
+		String imageName = file.isEmpty() ? "default.png" : file.getOriginalFilename();
 		user.setProfileImage(imageName);
 		UserDtls saveUser = userService.saveUser(user);
 
@@ -107,7 +120,7 @@ public class HomeController {
 				Path path = Paths.get(saveFile.getAbsolutePath() + File.separator + "profile_img" + File.separator
 						+ file.getOriginalFilename());
 
-				System.out.println(path);
+//				System.out.println(path);
 				Files.copy(file.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
 			}
 			session.setAttribute("succMsg", "Register successfully");
@@ -117,5 +130,6 @@ public class HomeController {
 
 		return "redirect:/register";
 	}
+	
 
 }
