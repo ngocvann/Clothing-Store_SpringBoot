@@ -9,7 +9,7 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
 		integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
 		crossorigin="anonymous" referrerpolicy="no-referrer" />
-		<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/style.css">
 	<style>
 		.custom-navbar-bg {
 			background-color: #f9f4eb;
@@ -79,34 +79,61 @@
 						</a>
 					</li>
 					<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-							aria-expanded="false">
+						<a class="nav-link nav-category dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+							aria-expanded="false" style="color: #505C3C">
 							Danh mục
 						</a>
 						<ul class="dropdown-menu">
-							<li><a class="dropdown-item" href="#">Action</a></li>
-							<li><a class="dropdown-item" href="#">Another action</a></li>
-							<li>
-								<hr class="dropdown-divider">
-							</li>
-							<li><a class="dropdown-item" href="#">Something else here</a></li>
+							<li th:each="c:${categories}"><a class="dropdown-item" th:href="@{'/product?category='+${c.name}}">[[${c.name}]]</a></li>
 						</ul>
 					</li>
+
 				</ul>
 
-				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
-					<li class="cart-icon">
-						<i class="fa-solid fa-cart-shopping"></i>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="/signin">Đăng nhập</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="/register">Đăng ký</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="/admin/">Admin</a>
-					</li>
+				<ul class="navbar-nav mb-2 mb-lg-0" style="padding-right: 10px;">
+					<th:block th:if="${user==null}">
+
+						<li class="nav-item">
+							<a class="nav-link" href="/signin">Đăng nhập</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="/register">Đăng ký</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="/admin/">Admin</a>
+						</li>
+					</th:block>
+
+					<th:block th:if="${user!=null}">
+						<li class="nav-item">
+							<a class="nav-link">
+								<i class="fa-solid fa-cart-shopping"></i>
+								Giỏ hàng
+							</a>
+						</li>
+
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+								aria-expanded="false">
+								<i class="fa-solid fa-user"></i>
+								[[${user.name}]]
+							</a>
+							<ul class="dropdown-menu" style="left: -50px;">
+								<li><a class="dropdown-item" href="#">Profile</a></li>
+								<li><a class="dropdown-item" href="#">Another action</a></li>
+								<li>
+									<hr class="dropdown-divider">
+								</li>
+								<li class="nav-item">
+									<a class="nav-link" href="/logout">
+										<i class="fa-solid fa-arrow-right-from-bracket"></i>
+										Logout
+									</a>
+								</li>
+							</ul>
+						</li>
+
+					</th:block>
 				</ul>
 			</div>
 		</div>
@@ -114,7 +141,7 @@
 	<!--End Navbar-->
 
 	<div th:replace="${content}"></div>
-	
+
 	<!--Start Footer-->
 	<div class="container-fluid p-1 bg-primary text-center text-white" style="margin-top: 250px;">
 		<p>aurorashop.com</p>
