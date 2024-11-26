@@ -29,6 +29,7 @@ public class Product {
 	private int stock;
 
 	private String image;
+	
 
 	public void setImage(String imageName) {
 		this.image = imageName;
@@ -92,6 +93,10 @@ public class Product {
 
 	public void setDiscountPrice(Double discountPrice) {
 		this.discountPrice = discountPrice;
+	}
+	
+	public Double getDiscountPrice() {
+		return discountPrice;
 	}
 
 	public void setDiscount(int discount) {
