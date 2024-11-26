@@ -10,10 +10,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import com.aurorashop.model.UserDtls;
 
 public class CustomUser implements UserDetails{
-
-	private UserDtls user;
-	
-	
+	public UserDtls user;
 
 	public CustomUser(UserDtls user) {
 		super();
@@ -35,24 +32,24 @@ public class CustomUser implements UserDetails{
 	public String getUsername() {
 		return user.getEmail();
 	}
-	
+
 	@Override
 	public boolean isAccountNonExpired() {
 		return true;
 	}
-	
+
 	@Override
 	public boolean isAccountNonLocked() {
-		return true;
+		return user.getAccountNonLocked();
 	}
-	
+
 	@Override
 	public boolean isCredentialsNonExpired() {
 		return true;
 	}
-	
+
 	@Override
 	public boolean isEnabled() {
-		return true;
+		return user.getIsEnable();
 	}
 }
