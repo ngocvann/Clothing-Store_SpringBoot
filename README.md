@@ -73,42 +73,47 @@ Shopping_Cart_Clothes/
 └── README.md
 ```
 
-## 📦 Cài Đặt Dự Án
+## 📦 Hướng Dẫn Cài Đặt Dự Án
 
-### 💻 Cài Đặt Môi Trường Phát Triển
-
+### 1️⃣ Yêu Cầu Hệ Thống
+Để triển khai và chạy dự án, bạn cần đảm bảo các công cụ sau được cài đặt trên máy tính:
 1. **Java JDK 17**: [Cài đặt từ Amazon Corretto](https://aws.amazon.com/corretto/).
 2. **Maven**: [Cài đặt từ Maven Official Website](https://maven.apache.org/).
 3. **MySQL**: Cài đặt và tạo cơ sở dữ liệu cho ứng dụng.
 4. **IDE**: Sử dụng IntelliJ IDEA hoặc Eclipse.
 
-### Clone Dự Án và Cài Đặt Dependencies 📦
-
+### 2️⃣ Cách Triển Khai Dự Án
+#### Clone Repository
+Sao chép mã nguồn từ GitHub bằng lệnh sau:
 ```bash
 git clone https://github.com/ngocvann/Clothing-Store_SpringBoot.git
+```
+#### Cài Đặt Dependencies
+Truy cập vào thư mục dự án vừa clone và chạy lệnh Maven để cài đặt các thư viện cần thiết:
+```bash
 mvn clean install
 ```
 ### Cấu Hình Cơ Sở Dữ Liệu 💾
-Tạo cơ sở dữ liệu trong MySQL, ví dụ: shopping_cart_clothes.
-Cập nhật thông tin kết nối trong application.properties:
-properties
+1. **Mở MySQL và tạo cơ sở dữ liệu với tên phù hợp, ví dụ: shopping_cart_clothes.**
+2. **Cập nhật file application.properties trong thư mục src/main/resources với thông tin kết nối MySQL của bạn:**
 ```bash
 spring.application.name=Shopping_Cart_Clothes
 spring.datasource.url=jdbc:mysql://localhost:3306/shopping_cart_clothes
 spring.datasource.username= root
 spring.datasource.password=<your_password>
 ```
-Chạy Ứng Dụng 🚀
+Lưu ý: Thay <your_password> bằng mật khẩu MySQL của bạn.
+
+### 4️⃣ Khởi Chạy Ứng Dụng
+Sử dụng lệnh sau để khởi động ứng dụng:
 ```bash
 mvn spring-boot:run
 ```
-Truy Cập Website 🌐
-Mở trình duyệt và truy cập vào địa chỉ:
+Sau khi ứng dụng khởi chạy thành công, bạn có thể truy cập website tại:
 ```bash
 http://localhost:8081
 ```
 📝 Đánh Giá và Phản Hồi
-Mình rất mong nhận được phản hồi từ các bạn về các tính năng của website. Hãy chia sẻ suy nghĩ và góp ý của các bạn để mình có thể hoàn thiện sản phẩm hơn nữa!
+Mình rất mong nhận được ý kiến đóng góp của bạn để cải thiện sản phẩm. Nếu bạn có bất kỳ ý tưởng, phản hồi hoặc phát hiện lỗi nào, hãy liên hệ hoặc gửi issue trên GitHub.
+Nếu có bất kỳ thắc mắc nào trong quá trình cài đặt, vui lòng tham khảo tài liệu hoặc liên hệ qua các kênh hỗ trợ được liệt kê trong repository này. 🎉
 
-🙌 Cảm Ơn Bạn!
-Cảm ơn bạn đã theo dõi dự án của mình. Hy vọng bạn sẽ có những trải nghiệm tuyệt vời khi sử dụng sản phẩm! 🎉
