@@ -7,7 +7,6 @@
 
 ---
 
-
 <img width="943" alt="image" src="https://github.com/user-attachments/assets/5dc1d82b-206d-4d0b-b4da-069c8714a8f4" />
 
 ---
@@ -42,37 +41,37 @@ Dự án này nhằm xây dựng một website bán hàng trực tuyến cho cá
 
 ## 🧑‍💻 Cấu Trúc Thư Mục Dự Án
 
-Shopping_Cart_Clothes/ 
-├── src/ 
-│ ├── main/ 
-│ │ ├── java/ 
-│ │ │ └── com/ 
-│ │ │ └── ecom/ 
-│ │ │ ├── config/ 
-│ │ │ ├── controller/ 
-│ │ │ ├── model/ 
-│ │ │ ├── repository/ 
-│ │ │ ├── service/ 
-│ │ │ ├── util/ 
-│ │ │ └── application.java 
-│ │ ├── resources/ 
-│ │ │ ├── static/ 
-│ │ │ │ ├── css/ 
-│ │ │ │ ├── img/ 
-│ │ │ │ └── js/ 
-│ │ │ ├── template/ 
-│ │ │ │ ├── admin/ 
-│ │ │ │ ├── user/ 
-│ │ │ └── application.properties 
-│ └── test/ 
-│ └── java/ 
-│ └── com/ 
-│ └── ecom/ 
-│ └── ClothesShopApplicationTests.java
-├── pom.xml 
+```plaintext
+Shopping_Cart_Clothes/
+├── src/
+│   ├── main/
+│   │   ├── java/
+│   │   │   └── com/
+│   │   │       └── ecom/
+│   │   │           ├── config/
+│   │   │           ├── controller/
+│   │   │           ├── model/
+│   │   │           ├── repository/
+│   │   │           ├── service/
+│   │   │           ├── util/
+│   │   │           └── application.java
+│   │   ├── resources/
+│   │   │   ├── static/
+│   │   │   │   ├── css/
+│   │   │   │   ├── img/
+│   │   │   │   └── js/
+│   │   │   ├── template/
+│   │   │   │   ├── admin/
+│   │   │   │   └── user/
+│   │   │   └── application.properties
+│   └── test/
+│       └── java/
+│           └── com/
+│               └── ecom/
+│                   └── ClothesShopApplicationTests.java
+├── pom.xml
 └── README.md
-
----
+```
 
 ## 📦 Cài Đặt Dự Án
 
